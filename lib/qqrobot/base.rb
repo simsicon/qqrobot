@@ -7,19 +7,20 @@ module Qqrobot
       @product_id = product_id
     end
 
-    def login(qqNum, password, receiveMsgUrl)
+    def login(qqNum, passwd, receiveMsgUrl)
       api_url = 'http://cloud.189works.com:8080/qqRobot/login'
       params = init_params
       params['qqNum'] = qqNum
-      params['password'] = password
-      params['receiveMsgUrl'] = receiveMsgUrl
+      params['passwd'] = passwd
+      params['url'] = receiveMsgUrl
 
-      puts encode_json(params).inspect
-
-      response = RestClient.post api_url, encode_json(params), :content_type => :json, :accept => :json
-      decoded_response = decode_json(response.to_s)
       
-      decoded_response
+
+      res = Net::HTTP.post_form(URI.parse(api_url), params)
+      puts res.body
+      # response = RestClient.post api_url, encode_json(params), :content_type => :json, :accept => :json
+      # decoded_response = decode_json(response.to_s)
+      # decoded_response
     end
 
   private
@@ -49,7 +50,7 @@ module Qqrobot
       params                    = {}
       params['apID']            = @apid
       params['key']             = @key
-      params['productID']       = @product_id
+      #params['productID']       = @product_id
       params['timeStamp']       = timestamp
       params
     end

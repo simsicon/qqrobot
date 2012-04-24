@@ -3,6 +3,9 @@ require 'openssl'
 require 'base64'
 require 'rest_client'
 require 'yajl'
+require 'net/http'
+require 'uri'
+require 'json'
 
 module Qqrobot
   # Your code goes here...

@@ -18,6 +18,7 @@ module Qqrobot
       response = RestClient.post api_url, encode_json(params), :content_type => :json, :accept => :json
       decoded_response = decode_json(response.to_s)
       puts decoded_response.inspect
+      decoded_response
     end
 
   private
